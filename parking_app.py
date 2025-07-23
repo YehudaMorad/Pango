@@ -9,6 +9,11 @@ class ParkingApp:
     """
     def __init__(self, base_url):
         self.base_url = base_url
+    
+    def extract_flash_message(self, html):
+        soup = BeautifulSoup(html, "html.parser")
+        alert = soup.find(class_=["alert", "alert-danger", "alert-warning", "alert-info"])
+        return alert.get_text(strip=True) if alert else ""
 
     def get_csrf_token(self, session, url):
         resp = session.get(url)
@@ -67,3 +72,23 @@ class ParkingApp:
         url = f"{self.base_url}/users"
         resp = admin_session.get(url)
         return username in resp.text
+
+
+    def close_session_by_plate_and_slot(self, admin_session, car_plate, slot):
+        """Find session by car_plate and slot and close it. Returns (session_id, response, message)"""
+        from bs4 import BeautifulSoup
+        dash = admin_session.get(f"{self.base_url}/").text
+        soup = BeautifulSoup(dash, "html.parser")
+        session_id = None
+        for tr in soup.find_all("tr"):
+            if car_plate in tr.text and slot in tr.text:
+                form = tr.find("form", {"action": True})
+                if form and "/end/" in form['action']:
+                    session_id = form['action'].split("/end/")[1]
+                    break
+        if not session_id:
+            return None, None, "Session ID not found"
+        csrf_token = self.get_csrf_token(admin_session, self.base_url)
+        resp = admin_session.post(f"{self.base_url}/end/{session_id}", data={'csrf_token': csrf_token}, allow_redirects=True)
+        msg = self.extract_flash_message(resp.text)
+        return session_id, resp, msg

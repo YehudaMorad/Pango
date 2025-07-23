@@ -109,25 +109,13 @@ class TestParkingFunctional:
         assert "slot is already occupied" in error_msg.lower(), \
             f"Expected slot occupied error, but got: '{error_msg}'"
 
+
     def test_close_and_verify_parking(self, app, admin_session, request):
         request.node._report_sections.append(("call", "Step", f"Closing session for car {CAR_PLATE_1} in slot {SLOT_1}"))
-        dash = admin_session.get(f"{BASE_URL}/").text
-        soup = BeautifulSoup(dash, "html.parser")
-
-        session_id = None
-        for tr in soup.find_all("tr"):
-            if CAR_PLATE_1 in tr.text and SLOT_1 in tr.text:
-                form = tr.find("form", {"action": True})
-                if form and "/end/" in form['action']:
-                    session_id = form['action'].split("/end/")[1]
-                    break
+        session_id, resp, success_msg = app.close_session_by_plate_and_slot(admin_session, CAR_PLATE_1, SLOT_1)
 
         assert session_id is not None, "Session ID not found for closing"
         request.node._report_sections.append(("call", "Check", f"Found session_id={session_id}"))
-
-        csrf_token = app.get_csrf_token(admin_session, BASE_URL)
-        resp = admin_session.post(f"{BASE_URL}/end/{session_id}", data={'csrf_token': csrf_token}, allow_redirects=True)
-        success_msg = extract_flash_message(resp.text)
 
         request.node._report_sections.append(("call", "Check", f"Expected session close success. Got: '{success_msg}'"))
         assert "parking ended" in success_msg.lower(), f"Expected parking ended message, but got '{success_msg}'"

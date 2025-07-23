@@ -439,9 +439,9 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>report.html</h1>
-    <p>Report generated on 23-Jul-2025 at 13:44:32 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
+    <p>Report generated on 23-Jul-2025 at 16:18:51 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
     <h2>Summary</h2>
-    <p>4 tests ran in 2.49 seconds. </p>
+    <p>4 tests ran in 5.73 seconds. </p>
     <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">3 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
@@ -457,16 +457,16 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Failed</td>
           <td class="col-name">test_parking_functional.py::TestParkingFunctional::test_duplicate_slot_parking</td>
-          <td class="col-duration">0.04</td>
+          <td class="col-duration">0.09</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log">self = &lt;test_parking_functional.TestParkingFunctional object at 0x00000204FFB88D60&gt;, app = &lt;parking_app.ParkingApp object at 0x00000204FFB8D6A0&gt;<br/>driver2 = &lt;requests.sessions.Session object at 0x00000204FFB8A2C0&gt;, request = &lt;FixtureRequest for &lt;Function test_duplicate_slot_parking&gt;&gt;<br/><br/>    def test_duplicate_slot_parking(self, app, driver2, request):<br/>        request.node._report_sections.append((&quot;call&quot;, &quot;Step&quot;, f&quot;DRIVER2 tries to park car {CAR_PLATE_2} in already occupied slot {SLOT_1}&quot;))<br/>        resp = app.start_parking(driver2, CAR_PLATE_2, SLOT_1)<br/>        error_msg = extract_flash_message(resp.text)<br/>    <br/>        request.node._report_sections.append((&quot;call&quot;, &quot;Check&quot;, f&quot;Expected slot occupied error. Got: &#x27;{error_msg}&#x27;&quot;))<br/>&gt;       assert &quot;slot is already occupied&quot; in error_msg.lower(), \<br/>            f&quot;Expected slot occupied error, but got: &#x27;{error_msg}&#x27;&quot;<br/><span class="error">E       AssertionError: Expected slot occupied error, but got: &#x27;Parking started for 99998888&#x27;</span><br/><span class="error">E       assert &#x27;slot is already occupied&#x27; in &#x27;parking started for 99998888&#x27;</span><br/><span class="error">E        +  where &#x27;parking started for 99998888&#x27; = &lt;built-in method lower of str object at 0x00000204FFC81390&gt;()</span><br/><span class="error">E        +    where &lt;built-in method lower of str object at 0x00000204FFC81390&gt; = &#x27;Parking started for 99998888&#x27;.lower</span><br/><br/>test_parking_functional.py:109: AssertionError<br/> -------------------------------Captured Step call------------------------------- <br/>DRIVER2 tries to park car 99998888 in already occupied slot 22<br/> ------------------------------Captured Check call------------------------------- <br/>Expected slot occupied error. Got: &#x27;Parking started for 99998888&#x27;<br/></div></td></tr></tbody>
+            <div class="log">self = &lt;test_parking_functional.TestParkingFunctional object at 0x0000020D3F748E90&gt;, app = &lt;parking_app.ParkingApp object at 0x0000020D3F7556A0&gt;<br/>driver2 = &lt;requests.sessions.Session object at 0x0000020D3F74A650&gt;, request = &lt;FixtureRequest for &lt;Function test_duplicate_slot_parking&gt;&gt;<br/><br/>    def test_duplicate_slot_parking(self, app, driver2, request):<br/>        request.node._report_sections.append((&quot;call&quot;, &quot;Step&quot;, f&quot;DRIVER2 tries to park car {CAR_PLATE_2} in already occupied slot {SLOT_1}&quot;))<br/>        resp = app.start_parking(driver2, CAR_PLATE_2, SLOT_1)<br/>        error_msg = extract_flash_message(resp.text)<br/>    <br/>        request.node._report_sections.append((&quot;call&quot;, &quot;Check&quot;, f&quot;Expected slot occupied error. Got: &#x27;{error_msg}&#x27;&quot;))<br/>&gt;       assert &quot;slot is already occupied&quot; in error_msg.lower(), \<br/>            f&quot;Expected slot occupied error, but got: &#x27;{error_msg}&#x27;&quot;<br/><span class="error">E       AssertionError: Expected slot occupied error, but got: &#x27;Parking started for 99998888&#x27;</span><br/><span class="error">E       assert &#x27;slot is already occupied&#x27; in &#x27;parking started for 99998888&#x27;</span><br/><span class="error">E        +  where &#x27;parking started for 99998888&#x27; = &lt;built-in method lower of str object at 0x0000020D3F7B6330&gt;()</span><br/><span class="error">E        +    where &lt;built-in method lower of str object at 0x0000020D3F7B6330&gt; = &#x27;Parking started for 99998888&#x27;.lower</span><br/><br/>test_parking_functional.py:109: AssertionError<br/> -------------------------------Captured Step call------------------------------- <br/>DRIVER2 tries to park car 99998888 in already occupied slot 22<br/> ------------------------------Captured Check call------------------------------- <br/>Expected slot occupied error. Got: &#x27;Parking started for 99998888&#x27;<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_parking_functional.py::TestParkingFunctional::test_create_drivers</td>
-          <td class="col-duration">0.77</td>
+          <td class="col-duration">1.25</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -475,7 +475,7 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_parking_functional.py::TestParkingFunctional::test_duplicate_car_parking</td>
-          <td class="col-duration">0.76</td>
+          <td class="col-duration">1.36</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -484,8 +484,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_parking_functional.py::TestParkingFunctional::test_close_and_verify_parking</td>
-          <td class="col-duration">0.12</td>
+          <td class="col-duration">0.24</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> -------------------------------Captured Step call------------------------------- <br/>Closing session for car 22224444 in slot 22<br/> ------------------------------Captured Check call------------------------------- <br/>Found session_id=145<br/> ------------------------------Captured Check call------------------------------- <br/>Expected session close success. Got: &#x27;Parking ended for 22224444. Fee: ₪0.0 (חיוב: error)&#x27;<br/> ------------------------------Captured Check call------------------------------- <br/>Verified car 22224444 not in open sessions<br/> ------------------------------Captured Check call------------------------------- <br/>Verified car 22224444 found in parking history<br/></div></td></tr></tbody></table></body></html>
+            <div class="log"> -------------------------------Captured Step call------------------------------- <br/>Closing session for car 22224444 in slot 22<br/> ------------------------------Captured Check call------------------------------- <br/>Found session_id=159<br/> ------------------------------Captured Check call------------------------------- <br/>Expected session close success. Got: &#x27;Parking ended for 22224444. Fee: ₪0.0 (חיוב: error)&#x27;<br/> ------------------------------Captured Check call------------------------------- <br/>Verified car 22224444 not in open sessions<br/> ------------------------------Captured Check call------------------------------- <br/>Verified car 22224444 found in parking history<br/></div></td></tr></tbody></table></body></html>
